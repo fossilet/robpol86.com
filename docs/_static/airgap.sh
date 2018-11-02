@@ -53,8 +53,7 @@ rm -vf /tmp/qr*.png
 # Encode.
 echo -e "\x1b[1mCompressing, encrypting, and encoding $# file(s)...\x1b[0m"
 tar -czv $@ |
-    openssl enc -aes-256-cfb -salt -pass env:PASSWORD |
-    base64 -w0 |
+    openssl enc -aes-256-cbc -a -pass env:PASSWORD |
     qrencode -o /tmp/qr.png -Sv40
 echo -e "\x1b[1mDone\x1b[0m"
 
